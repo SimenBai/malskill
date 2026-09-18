@@ -20,12 +20,23 @@ The hook command is self-contained (it creates the file inline), so it works
 wherever the plugin is installed. A `command_windows` variant is included for
 Windows.
 
-**Note on the manifest and hooks:** the publish/marketplace manifest schema
-(`author` + `interface` with privacy/terms URLs) does not accept a top-level
-`hooks` field, so `plugin.json` does not reference `hooks/hooks.json`. The hook
-is still present in the repo; attach it either by installing the plugin locally
-(from this path/git repo, where bundled hooks are allowed) or by copying
-`hooks/hooks.json` to `~/.codex/hooks.json` or the project's `.codex/hooks.json`.
+## Local install vs. marketplace publish
+
+This manifest is for **local install**, not for publishing to the Codex plugin
+directory. The two surfaces have conflicting rules:
+
+- **Local install** (from this git repo / a local path) supports a top-level
+  `hooks` field, so `plugin.json` points at `hooks/hooks.json` and the
+  `SessionStart` hook runs after you review and trust it.
+- **Marketplace publish** validation requires the `author` + `interface` block
+  but **rejects `hooks`** — the hosted directory does not distribute plugins
+  that ship lifecycle hooks. This plugin therefore is not meant to be published
+  to that directory; if you run the publish validator it will flag the `hooks`
+  field, which is expected.
+
+If you only need the hook to run in your own setup, you can also skip the plugin
+entirely and drop `hooks/hooks.json` into `~/.codex/hooks.json` or the project's
+`.codex/hooks.json`.
 
 ## Install
 

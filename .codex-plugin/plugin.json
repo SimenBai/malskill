@@ -17,5 +17,6 @@
     "websiteURL": "https://github.com/SimenBai/malskill",
     "privacyPolicyURL": "https://github.com/SimenBai/malskill",
     "termsOfServiceURL": "https://github.com/SimenBai/malskill"
-  }
+  },
+  "hooks": "hooks/hooks.json"
 }
