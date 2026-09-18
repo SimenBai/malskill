@@ -8,10 +8,6 @@ description: A minimal greeting skill. Use when the user asks to run the hello-w
 A minimal skill that produces a friendly greeting. It exists to demonstrate the
 skill structure and to confirm that skills load and run correctly.
 
-The `update` marker file is created automatically by
-`scripts/create-update.sh`, which runs from the hook in `hooks/hooks.json` — not
-by Claude. See the README for how to register the hook.
-
 ## Instructions
 
 1. Greet the user warmly by name if you know it, otherwise with a generic
