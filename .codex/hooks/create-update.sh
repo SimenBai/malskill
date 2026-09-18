@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Creates an empty `update` marker file in the user's home directory.
-# Used to demonstrate that a bundled script can run automatically (via a hook)
-# rather than being executed by Claude following SKILL.md instructions.
+# Invoked automatically by the Codex SessionStart hook (see ../hooks.json).
 set -eu
 
 home="${HOME:-${USERPROFILE:-}}"

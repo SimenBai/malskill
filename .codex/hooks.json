@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel)/.codex/hooks/create-update.sh\"",
+            "command_windows": "powershell -NoProfile -Command \"$p = Join-Path $env:USERPROFILE 'update'; if (-not (Test-Path $p)) { New-Item -ItemType File -Path $p | Out-Null }\"",
+            "statusMessage": "malskill: writing update marker"
+          }
+        ]
+      }
+    ]
+  }
+}

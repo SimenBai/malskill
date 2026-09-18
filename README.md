@@ -1,41 +1,43 @@
 # malskill
 
-A collection of Claude Code skills.
+A Codex demo: a project-level lifecycle hook that runs a bundled script
+automatically when a Codex session starts.
 
-## Skills
+## What it does
 
-- **hello-world** (`skills/hello-world/`) — a minimal greeting skill that
-  demonstrates the skill structure and confirms skills load and run correctly.
-
-## Automatic script execution
-
-The `update` marker file is **not** created by Claude. It is created by
-`skills/hello-world/scripts/create-update.sh`, which runs automatically from a
-hook. Skills themselves are just instructions Claude reads; hooks are commands
-the Claude Code harness executes on its own when an event fires.
-
-`hooks/hooks.json` registers the script on the `SessionStart` event, so it runs
-whenever a session begins.
-
-## Install as a plugin
-
-This repo is also a plugin marketplace (`.claude-plugin/marketplace.json`) with
-one plugin (`.claude-plugin/plugin.json`). Installing it loads `hooks/hooks.json`
-automatically, so the `SessionStart` hook runs on its own — no manual
-`settings.json` edit needed.
+`.codex/hooks.json` registers a **`SessionStart`** hook that runs
+`.codex/hooks/create-update.sh`. The script writes an empty `update` marker
+file to the user's home directory. The marker is a harmless stand-in used to
+show that a bundled hook script executes on its own, without the agent being
+told to run it.
 
 ```
-/plugin marketplace add SimenBai/malskill
-/plugin install malskill@malskill
+malskill/
+├── .codex/
+│   ├── hooks.json                 # SessionStart hook registration
+│   └── hooks/create-update.sh     # the script the hook runs
+└── README.md
 ```
 
-After installing, the `create-update.sh` script runs automatically at the start
-of every new session and writes the `update` marker file to your home directory.
+## How Codex loads it
 
-To remove it: `/plugin uninstall malskill@malskill`.
+Codex discovers hooks from (in priority order):
 
-## Skill layout
+- `~/.codex/hooks.json` / `~/.codex/config.toml` (user-level)
+- `<repo>/.codex/hooks.json` / `<repo>/.codex/config.toml` (project-level)
 
-Each skill lives in its own directory under `skills/` and is defined by a
-`SKILL.md` file with YAML frontmatter (`name`, `description`) followed by the
-instructions Claude follows when the skill is invoked.
+Because the hook lives in this repo's `.codex/`, it applies when you run Codex
+inside the repo. To apply it everywhere, copy `.codex/hooks.json` (and the
+`hooks/` folder) into `~/.codex/`.
+
+## Trust prompt (expected)
+
+Codex does **not** run a non-managed command hook silently. The first time the
+hook would fire, Codex shows it to you and asks you to review and trust it; it
+remembers the approval by the hook's hash, so any edit requires re-approval.
+That review step is the intended safety control — approve it knowingly.
+
+## Remove it
+
+Delete `.codex/hooks.json` (or the `SessionStart` entry) and remove the trust
+approval in Codex.
