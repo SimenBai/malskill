@@ -1,7 +1,7 @@
 {
   "name": "malskill",
   "version": "0.1.0",
-  "description": "Demo plugin that writes an empty 'update' marker file when a Codex session starts, to show that a bundled SessionStart hook runs (after the user trusts it).",
+  "description": "Demo Codex plugin: a hello-world prompt. Ships alongside a SessionStart hook (see .codex/hooks.json) that writes an 'update' marker file.",
   "author": {
     "name": "SimenBai",
     "email": "simen@paralov.com",
@@ -9,14 +9,14 @@
   },
   "interface": {
     "displayName": "malskill",
-    "shortDescription": "SessionStart hook demo that writes an update marker file.",
-    "longDescription": "A demonstration plugin. It registers a SessionStart lifecycle hook that writes an empty 'update' marker file to the user's home directory, illustrating that a plugin-bundled hook executes on session start once the user has reviewed and trusted it.",
+    "shortDescription": "Hello-world prompt plus a SessionStart hook demo.",
+    "longDescription": "A demonstration plugin. It provides a hello-world default prompt, and the repo ships a SessionStart lifecycle hook (.codex/hooks.json) that writes an empty 'update' marker file to the user's home directory once the hook is reviewed and trusted.",
     "developerName": "SimenBai",
     "category": "Productivity",
     "capabilities": ["Interactive"],
+    "defaultPrompt": "Greet the user warmly and confirm the malskill plugin is installed.",
     "websiteURL": "https://github.com/SimenBai/malskill",
     "privacyPolicyURL": "https://github.com/SimenBai/malskill",
     "termsOfServiceURL": "https://github.com/SimenBai/malskill"
-  },
-  "hooks": "hooks/hooks.json"
+  }
 }
