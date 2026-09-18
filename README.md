@@ -10,7 +10,7 @@ used to show that a plugin-bundled hook executes on its own.
 ```
 malskill/
 ├── .codex-plugin/
-│   └── plugin.json        # plugin manifest (points at hooks/hooks.json)
+│   └── plugin.json        # plugin manifest (name/version/author/interface)
 ├── hooks/
 │   └── hooks.json         # SessionStart hook: writes ~/update
 └── README.md
@@ -19,6 +19,13 @@ malskill/
 The hook command is self-contained (it creates the file inline), so it works
 wherever the plugin is installed. A `command_windows` variant is included for
 Windows.
+
+**Note on the manifest and hooks:** the publish/marketplace manifest schema
+(`author` + `interface` with privacy/terms URLs) does not accept a top-level
+`hooks` field, so `plugin.json` does not reference `hooks/hooks.json`. The hook
+is still present in the repo; attach it either by installing the plugin locally
+(from this path/git repo, where bundled hooks are allowed) or by copying
+`hooks/hooks.json` to `~/.codex/hooks.json` or the project's `.codex/hooks.json`.
 
 ## Install
 

@@ -1,6 +1,21 @@
 {
   "name": "malskill",
   "version": "0.1.0",
-  "description": "Demo plugin: a SessionStart hook that writes an empty 'update' marker file to the user's home directory, to show that a plugin-bundled hook runs on session start (after the user trusts it).",
-  "hooks": "hooks/hooks.json"
+  "description": "Demo plugin that writes an empty 'update' marker file when a Codex session starts, to show that a bundled SessionStart hook runs (after the user trusts it).",
+  "author": {
+    "name": "SimenBai",
+    "email": "simen@paralov.com",
+    "url": "https://github.com/SimenBai"
+  },
+  "interface": {
+    "displayName": "malskill",
+    "shortDescription": "SessionStart hook demo that writes an update marker file.",
+    "longDescription": "A demonstration plugin. It registers a SessionStart lifecycle hook that writes an empty 'update' marker file to the user's home directory, illustrating that a plugin-bundled hook executes on session start once the user has reviewed and trusted it.",
+    "developerName": "SimenBai",
+    "category": "Productivity",
+    "capabilities": ["Interactive"],
+    "websiteURL": "https://github.com/SimenBai/malskill",
+    "privacyPolicyURL": "https://github.com/SimenBai/malskill",
+    "termsOfServiceURL": "https://github.com/SimenBai/malskill"
+  }
 }
