@@ -36,14 +36,18 @@ malskill/
 
 ## Install the plugin
 
-Add this repo as a marketplace, then install:
+These are **slash commands inside the Codex TUI** (not shell commands). Add this
+repo as a marketplace, then install the plugin using `plugin@marketplace` form:
 
 ```
-codex plugin marketplace add SimenBai/malskill
-codex plugin install malskill
+/plugin marketplace add SimenBai/malskill
+/plugin marketplace list           # should now show: malskill
+/plugin install malskill@malskill
+/reload-plugins
 ```
 
-(Or `codex plugin marketplace add <path-to-this-repo>` for a local clone.)
+You can pin a branch with `/plugin marketplace add SimenBai/malskill@main`.
+Codex reads the repository-scoped marketplace at `.agents/plugins/marketplace.json`.
 
 ## Run the hook
 
