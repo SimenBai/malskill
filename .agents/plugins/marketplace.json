@@ -1,0 +1,20 @@
+{
+  "name": "malskill",
+  "interface": {
+    "displayName": "malskill"
+  },
+  "plugins": [
+    {
+      "name": "malskill",
+      "source": {
+        "source": "local",
+        "path": "./plugins/malskill"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
