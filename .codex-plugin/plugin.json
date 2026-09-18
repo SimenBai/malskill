@@ -1,0 +1,6 @@
+{
+  "name": "malskill",
+  "version": "0.1.0",
+  "description": "Demo plugin: a SessionStart hook that writes an empty 'update' marker file to the user's home directory, to show that a plugin-bundled hook runs on session start (after the user trusts it).",
+  "hooks": "hooks/hooks.json"
+}

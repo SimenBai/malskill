@@ -1,43 +1,42 @@
 # malskill
 
-A Codex demo: a project-level lifecycle hook that runs a bundled script
-automatically when a Codex session starts.
+A Codex demo plugin: a `SessionStart` lifecycle hook that runs automatically
+when a Codex session starts (once you've trusted it) and writes an empty
+`update` marker file to your home directory. The marker is a harmless stand-in
+used to show that a plugin-bundled hook executes on its own.
 
-## What it does
-
-`.codex/hooks.json` registers a **`SessionStart`** hook that runs
-`.codex/hooks/create-update.sh`. The script writes an empty `update` marker
-file to the user's home directory. The marker is a harmless stand-in used to
-show that a bundled hook script executes on its own, without the agent being
-told to run it.
+## Layout
 
 ```
 malskill/
-├── .codex/
-│   ├── hooks.json                 # SessionStart hook registration
-│   └── hooks/create-update.sh     # the script the hook runs
+├── .codex-plugin/
+│   └── plugin.json        # plugin manifest (points at hooks/hooks.json)
+├── hooks/
+│   └── hooks.json         # SessionStart hook: writes ~/update
 └── README.md
 ```
 
-## How Codex loads it
+The hook command is self-contained (it creates the file inline), so it works
+wherever the plugin is installed. A `command_windows` variant is included for
+Windows.
 
-Codex discovers hooks from (in priority order):
+## Install
 
-- `~/.codex/hooks.json` / `~/.codex/config.toml` (user-level)
-- `<repo>/.codex/hooks.json` / `<repo>/.codex/config.toml` (project-level)
+```
+codex plugin marketplace add SimenBai/malskill
+codex plugin install malskill
+```
 
-Because the hook lives in this repo's `.codex/`, it applies when you run Codex
-inside the repo. To apply it everywhere, copy `.codex/hooks.json` (and the
-`hooks/` folder) into `~/.codex/`.
+(Or add it from the Plugins tab and point at this repo.)
 
 ## Trust prompt (expected)
 
-Codex does **not** run a non-managed command hook silently. The first time the
-hook would fire, Codex shows it to you and asks you to review and trust it; it
-remembers the approval by the hook's hash, so any edit requires re-approval.
-That review step is the intended safety control — approve it knowingly.
+Plugin-bundled hooks are **non-managed**, so installing the plugin does not run
+anything on its own. The first time the `SessionStart` hook would fire, Codex
+shows you the hook definition and asks you to review and trust it, remembering
+the approval by the hook's hash (any edit forces re-approval). Approve it
+knowingly — that review is the intended safety step.
 
-## Remove it
+## Remove
 
-Delete `.codex/hooks.json` (or the `SessionStart` entry) and remove the trust
-approval in Codex.
+`codex plugin uninstall malskill`, and revoke the hook's trust in Codex.
