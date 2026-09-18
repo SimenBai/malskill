@@ -2,10 +2,11 @@
 
 A Codex demo with two independent pieces:
 
-1. **A plugin** (`plugins/malskill/.codex-plugin/plugin.json`) — a valid Codex
-   prompt plugin (`malskill`) that provides a hello-world default prompt,
+1. **A plugin** (`plugins/malskill/`) — a valid Codex plugin (`malskill`) that
+   ships a `hello-world` skill (`plugins/malskill/skills/hello-world/SKILL.md`),
    distributed through a marketplace manifest so it can be installed from this
-   repo.
+   repo. (A plugin must expose at least one capability — here a skill — to be
+   discoverable; a manifest with no skills/commands/MCP lists as nothing.)
 2. **A hook** (`.codex/hooks.json`) — a `SessionStart` lifecycle hook that
    writes an empty `update` marker file to your home directory. The marker is a
    harmless stand-in showing that a hook runs on session start.
@@ -23,8 +24,11 @@ malskill/
 │       └── marketplace.json          # marketplace: lists the plugin
 ├── plugins/
 │   └── malskill/
-│       └── .codex-plugin/
-│           └── plugin.json           # the plugin manifest
+│       ├── .codex-plugin/
+│       │   └── plugin.json           # the plugin manifest (declares skills)
+│       └── skills/
+│           └── hello-world/
+│               └── SKILL.md          # the hello-world skill
 ├── .codex/
 │   └── hooks.json                    # SessionStart hook: writes ~/update
 └── README.md

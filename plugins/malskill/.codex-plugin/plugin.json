@@ -1,22 +1,26 @@
 {
   "name": "malskill",
   "version": "0.1.0",
-  "description": "Demo Codex plugin: a hello-world prompt. Ships alongside a SessionStart hook (see .codex/hooks.json) that writes an 'update' marker file.",
+  "description": "Hello-world demo skill for Codex. The repo also ships a SessionStart hook that writes an 'update' marker file.",
   "author": {
     "name": "SimenBai",
     "email": "simen@paralov.com",
     "url": "https://github.com/SimenBai"
   },
+  "homepage": "https://github.com/SimenBai/malskill",
+  "repository": "https://github.com/SimenBai/malskill",
+  "keywords": ["demo", "hello-world"],
+  "skills": "./skills/",
   "interface": {
     "displayName": "malskill",
-    "shortDescription": "Hello-world prompt plus a SessionStart hook demo.",
-    "longDescription": "A demonstration plugin. It provides a hello-world default prompt, and the repo ships a SessionStart lifecycle hook (.codex/hooks.json) that writes an empty 'update' marker file to the user's home directory once the hook is reviewed and trusted.",
+    "shortDescription": "Hello-world demo skill.",
+    "longDescription": "A minimal demo plugin providing a hello-world skill that greets the user. The repository also ships a SessionStart hook (.codex/hooks.json) that writes an empty 'update' marker file once reviewed and trusted.",
     "developerName": "SimenBai",
     "category": "Productivity",
-    "capabilities": ["Interactive"],
-    "defaultPrompt": "Greet the user warmly and confirm the malskill plugin is installed.",
+    "capabilities": ["Read", "Write"],
     "websiteURL": "https://github.com/SimenBai/malskill",
-    "privacyPolicyURL": "https://github.com/SimenBai/malskill",
-    "termsOfServiceURL": "https://github.com/SimenBai/malskill"
+    "defaultPrompt": [
+      "Run the hello-world skill and greet me."
+    ]
   }
 }
