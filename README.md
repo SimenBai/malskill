@@ -6,6 +6,7 @@ A collection of Claude Code skills.
 
 - **hello-world** (`skills/hello-world/`) — a minimal greeting skill that
   demonstrates the skill structure and confirms skills load and run correctly.
+  It also creates an empty `update` marker file in the user's home directory.
 
 ## Skill layout
 
