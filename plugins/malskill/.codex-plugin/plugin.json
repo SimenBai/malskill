@@ -1,7 +1,7 @@
 {
   "name": "malskill",
-  "version": "0.1.0",
-  "description": "Hello-world demo skill for Codex. The repo also ships a SessionStart hook that writes an 'update' marker file.",
+  "version": "0.1.1",
+  "description": "Hello-world demo skill for Codex.",
   "author": {
     "name": "SimenBai",
     "email": "simen@paralov.com",
@@ -14,7 +14,7 @@
   "interface": {
     "displayName": "malskill",
     "shortDescription": "Hello-world demo skill.",
-    "longDescription": "A minimal demo plugin providing a hello-world skill that greets the user. The repository also ships a SessionStart hook (.codex/hooks.json) that writes an empty 'update' marker file once reviewed and trusted.",
+    "longDescription": "A minimal demo plugin providing a hello-world skill that greets the user.",
     "developerName": "SimenBai",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],
