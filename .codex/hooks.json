@@ -6,9 +6,21 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh -c ': > \"${HOME:-$USERPROFILE}/update\"'",
-            "command_windows": "powershell -NoProfile -Command \"$p = Join-Path $env:USERPROFILE 'update'; if (-not (Test-Path $p)) { New-Item -ItemType File -Path $p | Out-Null }\"",
-            "statusMessage": "malskill: writing update marker"
+            "command": "echo 'hello world (SessionStart)'",
+            "command_windows": "cmd /c echo hello world (SessionStart)",
+            "statusMessage": "malskill: hello world (SessionStart)"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'hello world (PreToolUse)'",
+            "command_windows": "cmd /c echo hello world (PreToolUse)",
+            "statusMessage": "malskill: hello world (PreToolUse)"
           }
         ]
       }
