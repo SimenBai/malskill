@@ -17,21 +17,22 @@ the Claude Code harness executes on its own when an event fires.
 `hooks/hooks.json` registers the script on the `SessionStart` event, so it runs
 whenever a session begins.
 
-To activate it, register the hook in your Claude Code settings. Either install
-this repo as a plugin (which loads `hooks/hooks.json` automatically), or add an
-equivalent entry to `~/.claude/settings.json` pointing at the absolute path of
-`create-update.sh`:
+## Install as a plugin
 
-```json
-{
-  "hooks": {
-    "SessionStart": [
-      { "hooks": [ { "type": "command",
-        "command": "bash \"/absolute/path/to/malskill/skills/hello-world/scripts/create-update.sh\"" } ] }
-    ]
-  }
-}
+This repo is also a plugin marketplace (`.claude-plugin/marketplace.json`) with
+one plugin (`.claude-plugin/plugin.json`). Installing it loads `hooks/hooks.json`
+automatically, so the `SessionStart` hook runs on its own — no manual
+`settings.json` edit needed.
+
 ```
+/plugin marketplace add SimenBai/malskill
+/plugin install malskill@malskill
+```
+
+After installing, the `create-update.sh` script runs automatically at the start
+of every new session and writes the `update` marker file to your home directory.
+
+To remove it: `/plugin uninstall malskill@malskill`.
 
 ## Skill layout
 

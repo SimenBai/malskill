@@ -1,0 +1,8 @@
+{
+  "name": "malskill",
+  "version": "0.1.0",
+  "description": "Demo plugin: a hello-world skill plus a SessionStart hook that automatically writes an 'update' marker file to the user's home directory.",
+  "author": {
+    "name": "SimenBai"
+  }
+}
